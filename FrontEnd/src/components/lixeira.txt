@@ -1,0 +1,72 @@
+//  this.tituloChat=x
+    //  switch (this.cont) {
+    //    case 1:
+    //      this.mensagens=[{mensagem:'Bom dia, em que posso ajuda-lo?',autor:"whatever",momento:'08:12'},
+    //    {mensagem:'Bom dia, preciso de um auxilio para marcar as aulas. Bom dia, preciso de um auxilio para marcar as aulas. ',autor:"Celso",momento:'08:15'}]             
+    //      break;
+    //    case 2:
+    //      this.mensagens=[{mensagem:'Bom dia, você precisa de ajuda?',autor:"Celso",momento:'08:12'},
+    //    {mensagem:'Bom dia, preciso de um auxilio para marcar as aulas. Bom dia, preciso de um auxilio para marcar as aulas. ',autor:"sadfas",momento:'08:15'}]
+    //      break;
+    //     case 3:
+    //       this.mensagens=[{mensagem:'Vai ter reunião na segunda?',autor:"whatever",momento:'08:12'},
+    //    {mensagem:'Sim, foi avisado a todo mundo. ',autor:"Celso",momento:'08:15'}]
+    //      this.cont=0
+    //      break;
+    //    default:
+    //      break;
+    //  }
+        mensagens:[{mensagem:'Bom dia, em que posso ajuda-lo?',autor:"whatever",momento:'11:20'},
+        {mensagem:'Bom dia, preciso de um auxilio para marcar as aulas. Bom dia, preciso de um auxilio para marcar as aulas. ',autor:"Celso",momento:'11:20'},
+        {mensagem:'Ok, em que dia você prefere:2',autor:"Celso",momento:'11:22'},
+        {mensagem:'Bom dia, preciso de um auxilio para marcar as aulas.',autor:"Celso",momento:'11:23'},
+        {mensagem:'Ok, em que dia você prefere:',autor:"ssss",momento:'11:23'},{mensagem:'Bom dia, em que posso ajuda-lo?',autor:"whatever",momento:'11:25'},
+        {mensagem:'Bom dia, preciso de um auxilio para marcar as aulas. Bom dia, preciso de um auxilio para marcar as aulas. ',autor:"Celso",momento:'11:26'},
+        {mensagem:'Ok, em que dia você prefere:2',autor:"ssss",momento:'11:27'},
+        {mensagem:'Bom dia, preciso de um auxilio para marcar as aulas. Bom dia, preciso de um auxilio para marcar as aulas.',autor:"Celso",momento:'11:30'},
+          
+       ],
+
+
+       Eu queria muito lhe agradecer viu. Você foi muito importante para mim, por ter me dado um 
+       voto de confiança e acreditado na minha capacidade. Pessoas como vc faz a gente voltar a ter 
+       fé nas pessoas. 
+
+       Eu sei que foi pouco tempo, mas saiba que eu nunca vou esquecer da oportunidade que vc me deu. E
+       saiba que caso possa vir a ser util, não pense duas vezes antes de pedir.
+
+       O contato que tivemos foi pouco, mas foi muito legal. E não tenho duvidas que vc vai alçar grandes
+       voos. Muito, muito, muito obrigado Victória. Vc é 10.
+
+
+
+Olá, eu sou o chatBot e estou aqui para auxilia-lo. Em que posso ser util?
+
+agendar aula
+Ok, vou lhe orientar a agendar uma aula.
+Para agendar aulas, acesse o menu a sua direita e clique na opção agendar aulas.
+
+cancelar aula
+Tudo bem, para cancelar aulas, acesse o menu a sua direita e clique na opção cancelar aulas.
+
+pagar boleto
+Entendido. Para emitir o seu boleto, que pode ser pago em qualquer agencia bancaria ou lotérica, você deve acessar o menu e a opção gerar boletos. Selecione o mês especifico e clique em gerar.
+
+resultado exame
+Entendido. O resultado de exames são disponibilizados no seu perfil no e-condutor.
+Estamos torcendo por você.
+
+atendente
+
+Tudo bem, aguarde que um atendente ira falar com você.
+
+
+
+
+
+-Buscar dados no banco de dados;
+-Organizar esses dados.
+-Baixar dados de chats
+-Organizar grupos
+-Organizar permissões
+-Criar o chat no firebase

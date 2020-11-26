@@ -22,7 +22,8 @@ Vue.component('vue-fontawesome', FontAwesomeIcon);
 import Chat from 'vue-beautiful-chat'
 
 
-
+import responsive from 'vue-responsive'
+Vue.use(responsive)
 import vuetify from '@/plugins/vuetify.js' // path to vuetify export
 
 

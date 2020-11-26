@@ -1,130 +1,211 @@
 <template>
 <div>
+  
   <v-row>
     <v-col>
-      <div class="modal-card" id="contatos" v-if="perfil=='Admin'" style=" overflow:auto;">
+     
+      <div class="modal-card" id="contatos" v-if="perfil!='Aluno'" style=" overflow:auto;">
+      
           <header class="modal-card-head" id="modalChatHead">
                   <span class="modal-card-title" style="color: aliceblue;">Contatos</span>                  
           </header>
         <section>
         
         <b-field>
-            <b-autocomplete v-model="name" :data="data" clearable @select="option => selected = option" placeholder="Busca...">
+            <b-autocomplete v-model="name" :data="Todos" clearable @select="option => selected = option" placeholder="Busca...">
                 <template slot="empty">No results found</template>
             </b-autocomplete>
         </b-field>
-    </section>
-    
-    <b-menu>
-      <b-menu-list v-model="selecionado">      
-        <b-menu-item :active="!isActive" >
-          <template slot="label">          
-            <v-icon>mdi-account</v-icon>Diretores
-          </template>
-          <b-menu-item v-for="diretor in Diretores" :key="diretor.nome" :label="diretor.nome" :value="diretor.nome" @click="alerta(diretor)"></b-menu-item>
-        </b-menu-item>
+        </section>
         
-        <b-menu-item  :active="!isActive" >
-          <template slot="label">          
-            <v-icon>mdi-account</v-icon>Instrutores
-          </template>
-          <b-menu-item v-for="instrutor in Instrutores" :key="instrutor" :label="instrutor.nome" @click="alerta(instrutor)"></b-menu-item>
-        </b-menu-item>
+        <b-menu>
+          <b-menu-list v-model="selecionado">      
+            <b-menu-item :active="!isActive" style="border-style:groove;">
+              <template slot="label">          
+                <v-icon>mdi-account</v-icon>Diretores
+              </template>
+              <b-menu-item v-for="diretor in Diretores" :key="diretor" :label="diretor" :value="diretor" @click="nomeChat(diretor)"></b-menu-item>
+            </b-menu-item>
+            
+            <b-menu-item  :active="!isActive" style="border-style:groove;">
+              <template slot="label">          
+                <v-icon>mdi-account</v-icon>Instrutores
+              </template>
+              <b-menu-item v-for="instrutor in Instrutores" :key="instrutor" :label="instrutor" @click="nomeChat(instrutor)"></b-menu-item>
+            </b-menu-item>
 
-        <b-menu-item :active="!isActive" >
-          <template slot="label">          
-            <v-icon>mdi-account</v-icon>Alunos
-          </template>
-          <b-menu-item v-for="aluno in Alunos" :key="aluno" :label="aluno.nome" @click="alerta(aluno)"></b-menu-item>
-        </b-menu-item>
-        <b-menu-item :active="!isActive" >
-          <template slot="label">          
-            <v-icon>mdi-account</v-icon>Atendimento
-          </template>
-          <b-menu-item v-for="atendente in Atendentes" :key="atendente" :label="atendente.nome" @click="alerta(atendente)"></b-menu-item>
-        </b-menu-item>  
+            <b-menu-item :active="!isActive" style="border-style:groove;">
+              <template slot="label">          
+                <v-icon>mdi-account</v-icon>Alunos
+              </template>
+              <b-menu-item v-for="aluno in Alunos" :key="aluno" :label="aluno" @click="nomeChat(aluno)"></b-menu-item>
+            </b-menu-item>
+            <b-menu-item :active="!isActive" style="border-style:groove;">
+              <template slot="label">          
+                <v-icon>mdi-account</v-icon>Atendimento
+              </template>
+              <b-menu-item v-for="atendente in Atendentes" :key="atendente" :label="atendente" @click="nomeChat(atendente)"></b-menu-item>
+            </b-menu-item>  
 
-           
-        <b-menu-item :active="!isActive" >
-          <template slot="label">          
-            <v-icon>mdi-account</v-icon>Grupos
-          </template>
-          <b-menu-item label="+ Criar grupo"></b-menu-item>
-          <b-menu-item v-for="grupo in Grupos" :key="grupo.nome" :label="grupo.nome" :value="grupo.nome" @click="alerta(grupo)"></b-menu-item>
-          
-        </b-menu-item>
-        
-
-
+              
+            <b-menu-item :active="!isActive" style="border-style:groove;">
+              <template slot="label">          
+                <v-icon>mdi-account</v-icon>Grupos
+              </template>
+              <b-menu-item @click="grupo()" label="+ Criar grupo"></b-menu-item>
+              <b-menu-item v-for="grupo in Grupos" :key="grupo" :label="grupo" :value="grupo" @click="nomeChat(grupo)"></b-menu-item>
+              
+            </b-menu-item>
+            
 
 
 
-      </b-menu-list>             
-    </b-menu>
-    <v-divider></v-divider>
-     <b-menu>
-      <p style="background:darkblue; color:white; text-align:center"> Conversas</p>
-      <b-menu-list>
-        <b-menu-item v-for="user in Chats" :key="user" :label="user.nome" @click="alerta(user)"></b-menu-item>
-        <br>
-      <b-menu-item label="+ Criar grupo"></b-menu-item>    
-      </b-menu-list>
-                     
-     </b-menu>
+
+
+          </b-menu-list>             
+        </b-menu>
+        <v-divider></v-divider>
+        <b-menu>
+          <p style="background:darkblue; color:white; text-align:center"> Conversas</p>
+          <b-menu-list>
+            <b-menu-item v-for="user in Chats" :key="user" :label="user" @click="nomeChat(user)"></b-menu-item>
+            <br>
+              
+          </b-menu-list>
+                        
+        </b-menu>
 
   
     </div>
       
     </v-col>
     <v-col >
-
-      <div class="modal-card" id="todoChat" v-if="!false">
+       <div v-responsive.sm.xm class="modal-card" id="todoChatSm" v-if="!false">
            
                 <header class="modal-card-head" id="modalChatHead">
-                  <p class="modal-card-title" style="color: aliceblue;">{{tituloChat.nome}}</p>
-                  <button type="button" class="delete"/>
+                  <p class="modal-card-title" style="color: aliceblue;">{{tituloChat}}</p>
+                  
                 </header>
-                <div style=" overflow:auto;" id="chatArea" >
-                              <div v-for="msg in mensagens" :key="msg.mensagens">
+                
+                <div  id="chatArea"><div v-for="msg in computedChats" :key="msg" >
+                
+                    <div v-for="m in msg" :key="m" >
+                          
+                            <v-card id="mensagemRecebida" v-if="m.autor==tituloChat" >
+                              {{m.mensagem}}
+                              <v-card-text> <p id="hora">{{m.momento}}</p></v-card-text>
+                            </v-card>         
+                          <v-card id="mensagemEnviada" v-if="m.destino==tituloChat" >
+                              {{m.mensagem}}
+                              <v-card-text> <p id="hora">{{m.momento}}</p></v-card-text>
+                            </v-card>
+                    
 
-                                <div id="mensagemRecebida" v-if="msg.autor!=nome">
-                                  <v-card id="msg">
-                                    <v-card-title>
-                                  {{msg.mensagem}}
-                                  </v-card-title>
-                                  <v-card-text>{{msg.momento}}</v-card-text>
-                                  </v-card>
-                                </div>
+                         </div>
+                         </div>
+                 
+                    </div>
+                    <v-divider></v-divider>
+                    <b-field type="is-primary" style="background:lightgray; top:20%">
+                      <b-input size="is-large" @keyup.enter.native="enviarMensagem" type="search" v-model="msg" expanded rounded/>
+                      <p class="control">
+                      <b-button size="is-large" @click="enviarMensagem" class="button is-success" rounded><b-icon icon="paper-plane" /></b-button>
+                      </p>
+                    </b-field>
+      </div>
 
-                                <div id="mensagemEnviada" v-else>                  
-                                  <v-card id="msg">
-                                  <v-card-title>
-                                  {{msg.mensagem}}
-                                  </v-card-title>
-                                  <v-card-text> <p id="hora">{{msg.momento}}</p></v-card-text>
-                                  </v-card>                 
-                                </div>
-                              </div>
-                  </div>
-                  <v-divider></v-divider>
-                <b-field type="is-primary" style="background:lightgray; top:20%">
-                  <b-input size="is-large" @keyup.enter.native="enviarMensagem" type="search" v-model="msg" expanded rounded/>
-                  <p class="control">
-                  <b-button size="is-large" @click="enviarMensagem" class="button is-success" rounded><b-icon icon="paper-plane" /></b-button>
-                  </p>
-                </b-field>
+      <div v-responsive.lg.xl.md class="modal-card" id="todoChat" v-if="!false">
+           
+                <header class="modal-card-head" id="modalChatHead">
+                  <p class="modal-card-title" style="color: aliceblue;">{{tituloChat}}</p>
+                  
+                </header>
+                
+                <div  id="chatArea"><div v-for="msg in computedChats" :key="msg" >
+                
+                    <div v-for="m in msg" :key="m" >
+                          
+                            <v-card id="mensagemRecebida" v-if="m.autor==tituloChat" >
+                              {{m.mensagem}}
+                              <v-card-text> <p id="hora">{{m.momento}}</p></v-card-text>
+                            </v-card>         
+                          <v-card id="mensagemEnviada" v-if="m.destino==tituloChat" >
+                              {{m.mensagem}}
+                              <v-card-text> <p id="hora">{{m.momento}}</p></v-card-text>
+                            </v-card>
+                    
+
+                         </div>
+                         </div>
+                 
+                    </div>
+                    <v-divider></v-divider>
+                    <b-field type="is-primary" style="background:lightgray; top:20%">
+                      <b-input size="is-large" @keyup.enter.native="enviarMensagem" type="search" v-model="msg" expanded rounded/>
+                      <p class="control">
+                      <b-button size="is-large" @click="enviarMensagem" class="button is-success" rounded><b-icon icon="paper-plane" /></b-button>
+                      </p>
+                    </b-field>
       </div>
     </v-col>
     
 
 
   </v-row>
-
+   <b-modal  v-model="isCardModalActive" :width="640" scroll="keep" >
+     <div class="card" id="grupo">
+              <div>
+                <br>
+           <p style="font-size:120%;font-weight:bolder;text-align:center;">Nome do Grupo</p>
+            <b-input rounded expanded size='is-large' type="is-success" v-model="userGroup.nome">
+            </b-input>
+          
+          
+        <div style="margin-left: 1%;">
+          <v-row>
+            <v-col>
+              <div><p style="font-size:120%;font-weight:bolder;"> Integrantes:</p></div> 
+              <b-field>              
+                  <b-select multiple native-size="6" v-model="userGroup.integrantes">
+                      <option v-for="user in Todos" :key="user" :value="user">{{user}}</option>               
+                  </b-select>
+              </b-field>
+              </v-col>
+              <v-col>
+                <div><p style="font-size:120%;font-weight:bolder;"> Selecionados:</p></div> 
+              <b-field>
+                <div v-for="user in userGroup.integrantes" :key="user">
+                                <p style="font-size:120%;font-weight:bolder;text-align:center;">{{user}}</p>
+                  </div>
+              </b-field>
+            </v-col>
+          </v-row>
+        </div>
+        
+                </div>
+                <br>
+                <b-button expanded rounded type="is-primary" @click="incluirGrupo">Criar Grupo</b-button>
+            </div>
+        </b-modal>
+        
     
  </div>
   
 </template>
 <style>
+#todoChatSm{
+  left: 10%;
+  bottom: 100%;
+  width: 100%;  
+  height: 80%;
+  background: white;
+  border-style: solid;
+  
+}
+#grupo{
+  background: rgb(255, 255, 255);
+  height: 500px;
+}
 #contatos{
   left: -40%;
   width: 50%;  
@@ -136,16 +217,19 @@
   text-align: end;
 }
 #mensagemEnviada{
-  background:rgb(59, 55, 55);
+  background:rgb(255, 255, 255);
   width: auto;  
   height: auto;
+  margin: 1%;
   margin-left: 10%;
   margin-top: 5%;  
   text-align: initial; 
   border-style:groove;  
   font-weight: bolder;
   border-color: red;
-  font-size: 100%;
+  font-size: 120%;
+  text-align: right;
+  text-justify: newspaper;
 }
 .time-left {
   margin-left: 0%;
@@ -168,16 +252,19 @@
   margin: 1%;
 }
 #mensagemRecebida{
-  background:rgb(87, 87, 87);
+  background:rgb(255, 254, 254);
   width: 90%;
-  height: auto;
-  margin-left: 1%;
-  margin-top: 2%;  
+  height: auto;  
+  margin-left: 2%;
+  margin-top: 2%;    
   text-align: initial;  
   border-style:groove;  
   font-weight: bolder;
   border-color: green;
   font-size: 120%;
+  text-align: left;
+  
+  
 }
 #todoChat{
   width: 150%;
@@ -194,13 +281,14 @@
 #chatArea{  
   background: rgb(255, 255, 255); 
   height: 800px; 
-  
+  overflow-y: scroll;
   }
 
 
 </style>
 <script>
 
+import axios from "axios";
 
  
 export default {
@@ -208,93 +296,179 @@ export default {
   data() {
     return {
       cont:0,
-
-      tituloChat:{nome:'Bruno Silva'},
+      userGroup:{integrantes:[],nome:[]},
+      isCardModalActive:false,
+      tituloChat:'Chat',
       selecionado:'nulo',
-      Alunos: [{nome:'Antonio Silva',pefil:'Aluno'},{nome:'Bruno Silva',pefil:'Aluno'},{nome:'Antonio Carlos',pefil:'Aluno'},{nome:'Carlos Antonio',pefil:'Aluno'},{nome:'Fabiana Silva',pefil:'Aluno'},{nome:'Paula Soares',pefil:'Aluno'},{nome:'Maria Clara',pefil:'Aluno'},{nome:'Silvana de Paula',pefil:'Aluno'},{nome:'Silvia Santos',pefil:'Aluno'}],
-      Diretores:[{nome:'José Paulo',perfil:'Diretor'},{nome:'Maria Silveira',perfil:'Diretor'},{nome:'Ana Paula',perfil:'Diretor'}],
-      Instrutores:[{nome:'Ayrton Senna',perfil:'Instrutor'},{nome:'Nelson Piquet',perfil:'Instrutor'},{nome:'Emerson Fittipaldi',perfil:'Instrutor'},{nome:'Felipe Massa',perfil:'Instrutor'},{nome:'Eliana Munique',perfil:'Instrutor'}],
-      Atendentes:[{nome:'Fernanda Oliveira',perfil:'Atendimento'},{nome:'Maria Lima',perfil:'Atendimento'},{nome:'Guilherme Souza',perfil:'Atendimento'}],
-      Chats:[{nome:'Ayrton Senna',perfil:'Instrutor'},{nome:'Maria Silveira',perfil:'Diretor'},{nome:'Carlos Antonio',pefil:'Aluno'}],
-      Grupos:[{nome:'Café ',perfil:'Grupo'},{nome:'Instrutores',perfil:'Grupo'},{nome:'Geral',pefil:'Grupo'}],
-      
+      //Alunos: [{nome:'Antonio Silva',pefil:'Aluno'},{nome:'Bruno Silva',pefil:'Aluno'},{nome:'Antonio Carlos',pefil:'Aluno'},{nome:'Carlos Antonio',pefil:'Aluno'},{nome:'Fabiana Silva',pefil:'Aluno'},{nome:'Paula Soares',pefil:'Aluno'},{nome:'Maria Clara',pefil:'Aluno'},{nome:'Silvana de Paula',pefil:'Aluno'},{nome:'Silvia Santos',pefil:'Aluno'}],
+      Alunos: [],
+      Diretores:[],
+      Instrutores:[],
+      Atendentes:[],
+      Todos: [],
+      Chats:[],
+     
+     
+     
+     Grupos:[{nome:'Café ',perfil:'Grupo'},{nome:'Instrutores',perfil:'Grupo'},{nome:'Geral',pefil:'Grupo'}],
+     perfil:0,
+      mensagens:[],
       selected: '1',
       selectedItem:'',
-      data: [
-                    'Angular',
-                    'Angular 2',
-                    'Aurelia',
-                    'Backbone',
-                    'Ember',
-                    'jQuery',
-                    'Meteor',
-                    'Node.js',
-                    'Polymer',
-                    'React',
-                    'RxJS',
-                    'Vue.js'
-                ],
-
-       mensagens:[{mensagem:'Bom dia, em que posso ajuda-lo?',autor:"whatever",momento:'11:20'},
-       {mensagem:'Bom dia, preciso de um auxilio para marcar as aulas. Bom dia, preciso de um auxilio para marcar as aulas. ',autor:"Celso",momento:'11:20'},
-       {mensagem:'Ok, em que dia você prefere:2',autor:"Celso",momento:'11:22'},
-       {mensagem:'Bom dia, preciso de um auxilio para marcar as aulas.',autor:"Celso",momento:'11:23'},
-        {mensagem:'Ok, em que dia você prefere:',autor:"ssss",momento:'11:23'},{mensagem:'Bom dia, em que posso ajuda-lo?',autor:"whatever",momento:'11:25'},
-       {mensagem:'Bom dia, preciso de um auxilio para marcar as aulas. Bom dia, preciso de um auxilio para marcar as aulas. ',autor:"Celso",momento:'11:26'},
-       {mensagem:'Ok, em que dia você prefere:2',autor:"ssss",momento:'11:27'},
-       {mensagem:'Bom dia, preciso de um auxilio para marcar as aulas. Bom dia, preciso de um auxilio para marcar as aulas.',autor:"Celso",momento:'11:30'},
-        
-       ],
+       
        msg:'',
        mensagem:{},
-        }
-      },
+       bind:[]
+       }
+   },
+    
   created() {    
     this.nome=localStorage.nome
     this.login=localStorage.login
     this.perfil=localStorage.perfil
-    this.juntando
+    this.todos()
+    this.buscarContatos()
+    this.$store.dispatch('database/bindChats',this.nome)
+  
   },
+  mounted() {
+			this.scrollToEnd();
+		},
+	updated() {
+      this.scrollToEnd();     
+			
+		},
   methods: {
-    enviarMensagem(){
-      
-    this.mensagem={
-      mensagem:this.msg,autor:this.nome, momento:new Date().toLocaleTimeString().substring(0,5)
-    }
-
-    this.mensagens.push(this.mensagem)
-    this.msg=''
+    //vaibd() {this.$store.dispatch('database/bindChats').then(item=>{console.log(item.val())})},
+    scrollToEnd() {
+				var container = document.querySelector("#chatArea");
+				var scrollHeight = container.scrollHeight;
+				container.scrollTop = scrollHeight;
+			},
+    incluirGrupo(){      
+      var payload=({nome:this.userGroup.nome,integrantes:this.userGroup.integrantes,perfil:'grupo'})
+      payload.integrantes.forEach(element => {
+        var msg={ mensagem:"Você foi incluido no grupo.",
+        autor:payload.nome,
+        destino:element,
+        momento:new Date().toLocaleTimeString().substring(0,5),
+        integrantes:this.userGroup.integrantes,
+        perfil:'grupo'
+      }
+      this.$store.dispatch('database/inseridor',msg)
+        
+      });
+      // this.$store.dispatch('database/criarGrupo',payload)
+      // var msg={ mensagem:"Você foi incluido no grupo.",
+      // autor:this.nome,
+      // destino:payload.nome,
+      // momento:new Date().toLocaleTimeString().substring(0,5)
+      // }
+      this.grupo()
     },
-    alerta(x){
-     this.cont++
-     this.tituloChat=x
-     switch (this.cont) {
-       case 1:
-         this.mensagens=[{mensagem:'Bom dia, em que posso ajuda-lo?',autor:"whatever",momento:'08:12'},
-       {mensagem:'Bom dia, preciso de um auxilio para marcar as aulas. Bom dia, preciso de um auxilio para marcar as aulas. ',autor:"Celso",momento:'08:15'}]             
-         break;
-       case 2:
-         this.mensagens=[{mensagem:'Bom dia, você precisa de ajuda?',autor:"Celso",momento:'08:12'},
-       {mensagem:'Bom dia, preciso de um auxilio para marcar as aulas. Bom dia, preciso de um auxilio para marcar as aulas. ',autor:"sadfas",momento:'08:15'}]
-         break;
-        case 3:
-          this.mensagens=[{mensagem:'Vai ter reunião na segunda?',autor:"whatever",momento:'08:12'},
-       {mensagem:'Sim, foi avisado a todo mundo. ',autor:"Celso",momento:'08:15'}]
-         this.cont=0
-         break;
-       default:
-         break;
-     }
-       
-    }
+    grupo(){
+      this.isCardModalActive=!this.isCardModalActive
+    },
     
     
-  },
-   computed: {
+    todos(){
+      axios.get().then(res=>{
+        res.data.forEach(element=>{
+          this.Todos.push(element.nome)
+          switch (element.perfil) {
+            case 'Aluno':
+              this.Alunos.push(element)              
+              break;
+            case 'Atendimento':
+              this.Atendentes.push(element)              
+              break;
+            case 'Instrutor':
+              this.Instrutores.push(element)              
+              break;
+            case 'Diretor':
+              this.Diretores.push(element)              
+              break;
+          
+            default:
+              break;
+          }
+        this.Alunos=this.Alunos.sort(this.ordenarNome)
+        this.Diretores=this.Diretores.sort(this.ordenarNome)
+        this.Atendentes=this.Atendentes.sort(this.ordenarNome)
+        this.Instrutores=this.Instrutores.sort(this.ordenarNome)
+        })
    
-           
-        }
+        this.Todos=this.Todos.sort()
+      })
+      
+      },
 
+    ordenarNome(a, b) {
+      if (a.nome > b.nome) {
+        return 1;
+        }
+        if (a.nome < b.nome) {
+          return -1;
+          }
+          // a must be equal to b
+          return 0;
+    },
+
+    buscarContatos(){
+      
+      this.$store.dispatch('database/bindChatsContatos',this.nome).then(item=>{            
+        this.Chats=(Object.keys(item.val()))        
+        })
+        
+   },
+
+    enviarMensagem(){
+ 
+        this.mensagemChat={
+        mensagem:this.msg,
+        autor:this.nome,
+        destino:this.tituloChat,
+        momento:new Date().toLocaleTimeString().substring(0,5)
+      }
+      this.$store.dispatch('database/inseridor',this.mensagemChat)
+      this.msg=''
+      
+    },
+    
+    nomeChat(x){
+      
+      if(x.nome){
+        this.tituloChat=x.nome}        
+      else{
+        this.tituloChat=x
+      }
+     
+      this.bindChatss()
+    },
+
+    bindChatss(){
+     
+     this.computedChats.forEach(element => {
+       Object.keys(element).forEach(element2 => {
+         this.bind.push(element[element2])         
+       });
+     });
+      
+      },
+  },
+  watch: {
+  computedChats(){
+    
+  }
+  
+},
+computed: {
+     computedChats(){      
+       return this.$store.getters['database/GetChat']
+        }
+        
+
+   }
 }
 
 </script>

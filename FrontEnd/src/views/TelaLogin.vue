@@ -13,7 +13,7 @@ import Login from  '../components/Login.vue'
 export default {
   name: 'TelaLogin',
   components: {
-    //HelloWorld,fab,ChatBox,Dashboard,
+    
     Login
   },
    data(){

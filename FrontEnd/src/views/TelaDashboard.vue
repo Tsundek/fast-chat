@@ -5,13 +5,19 @@
                        
 <Dashboard />
                         
-<Chat id="chat" v-if="exibeChat" />
-<v-btn id="btn" elevation="24" fab large @click="abreChat"><v-icon x-large>mdi-chat</v-icon></v-btn>
+<Chat  id="chat" v-if="exibeChat" />
+<v-btn v-responsive.sm.xm id="btnSm" elevation="24" fab large @click="abreChat"><v-icon x-large>mdi-chat</v-icon></v-btn>
+<v-btn v-responsive.lg.xl.md id="btn" elevation="24" fab large @click="abreChat"><v-icon x-large>mdi-chat</v-icon></v-btn>
  
   
 </div>
 </template>
 <style>
+#btnSm{
+  position: fixed;
+  right: 5%;
+  top: 10%;
+}
 #btn{
   left: 20%;
   bottom: 150px;
@@ -50,8 +56,8 @@ export default {
   },
   methods: {
     abreChat(){
-      this.exibeChat=!this.exibeChat,
-      this.$store.dispatch('database/inseridor',"merda")     
+      this.exibeChat=!this.exibeChat
+      
     }
   },
   
