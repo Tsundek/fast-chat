@@ -33,7 +33,7 @@
             </div>
                <br>
             <div>
-            <v-btn block large rounded dark ><v-icon large color="red">mdi-logout</v-icon>
+            <v-btn block large rounded dark @click="logout()"><v-icon large color="red">mdi-logout</v-icon>
               Logout
             </v-btn>
             </div>
@@ -75,7 +75,7 @@
       </v-container>
     </v-main>
           <b-modal v-responsive.sm.xm v-model="isComponentModalActive" trap-focus destroy-on-hide>
-            <v-row> <v-col>
+            <v-row > <v-col >
            <div class="modal-card " id="cardSm">
                   <header class="modal-card-head">
                       <p class="modal-card-title">Inserir Atividades</p>
@@ -144,11 +144,12 @@
 
 <style>
 #cardSm{
+  height: 100%;
   width: 100%;
   text-align: center;
 }
 #todoCard{
-  height: 100%;
+ min-height: 150%;
 
 }
 #concluido{
@@ -283,6 +284,9 @@ export default {
     this.$store.dispatch('database/bindAtividades',this.nome)
   },
 methods: {
+  logout(){
+    this.$router.replace('/')   
+  },
    todos(){
       axios.get().then(res=>{
         res.data.forEach(element=>{
