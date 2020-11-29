@@ -3,62 +3,7 @@
   
   <div v-responsive.lg.xl.md class="modal-card" id="todoChat" v-if="!false">
     <v-row>
-      <v-col id='contatosArea' lg="3"> 
-        <div id="contatosTitulo">Contatos</div>
-        <section>        
-        <b-field>
-            <v-autocomplete outlined dense prepend-icon="mdi-account-search" v-model="name" :items="Todos" clearable @select="option => selected = option">
-            </v-autocomplete>
-        </b-field>
-        </section>
-        <div style="overflow-y: scroll;height:450px">
-          <b-menu >
-              <b-menu-list v-model="selecionado">      
-                <b-menu-item :active="!isActive" id="contatoMenu"  >
-                  <template slot="label">          
-                    <v-icon>mdi-account</v-icon>Diretores
-                  </template>
-                  <b-menu-item v-for="diretor in Diretores" :key="diretor" :label="diretor.nome" :value="diretor" @click="nomeChat(diretor)"></b-menu-item>
-                </b-menu-item>
-                
-                <b-menu-item  :active="!isActive" id="contatoMenu">
-                  <template slot="label">          
-                    <v-icon>mdi-account</v-icon>Instrutores
-                  </template>
-                  <b-menu-item v-for="instrutor in Instrutores" :key="instrutor" :label="instrutor.nome" @click="nomeChat(instrutor)"></b-menu-item>
-                </b-menu-item>
-
-                <b-menu-item :active="!isActive" id="contatoMenu">
-                  <template slot="label">          
-                    <v-icon>mdi-account</v-icon>Alunos
-                  </template>
-                <b-menu-item v-for="aluno in Alunos" :key="aluno" :label="aluno.nome" @click="nomeChat(aluno)"></b-menu-item>
-               </b-menu-item>
-               <b-menu-item :active="!isActive" id="contatoMenu">
-                <template slot="label">          
-                <v-icon>mdi-account</v-icon>Atendimento
-                </template>
-                <b-menu-item v-for="atendente in Atendentes" :key="atendente" :label="atendente.nome" @click="nomeChat(atendente)"></b-menu-item>
-               </b-menu-item>                    
-               <b-menu-item :active="!isActive" id="contatoMenu">
-                <template slot="label">          
-                  <v-icon>mdi-account</v-icon>Grupos
-                  </template>
-                  <b-menu-item @click="grupo()" label="+ Criar grupo"></b-menu-item>
-                  <b-menu-item v-for="grupo in Grupos" :key="grupo" :label="grupo.nome" :value="grupo" @click="nomeChat(grupo)"></b-menu-item> 
-              </b-menu-item>
-              <v-divider></v-divider>
-              <b-menu>
-                <p style="background:darkblue; color:white; text-align:center;"> Conversas</p>
-                <b-menu-list>
-                  <b-menu-item v-for="user in Chats" :key="user" :label="user" @click="nomeChat(user)"></b-menu-item>
-                  <br>
-                </b-menu-list>              
-              </b-menu>
-            </b-menu-list>             
-          </b-menu>
-        </div>
-      </v-col>
+    
       <v-col id='chatArea'>
         <div id="chatTitulo">{{tituloChat}}</div>
           <div  id="chatMsgs">
@@ -171,6 +116,7 @@
   </div>
 </div>
   
+  
 </template>
 <style>
 #horaEnviada{
@@ -239,7 +185,7 @@
  }
 #chatTitulo{
   font-weight: bolder;  
-  text-align:initial;
+  text-align:center;
   font-size: 220%;
   border-bottom: solid;
   margin-left: -2%;
@@ -257,7 +203,7 @@
   border-color: darkred;
   }
 #todoChat{
-  top: 20%;
+  top: 25%;
   width: 100%;    
   height: 120%;
   right: 10%;  
@@ -359,14 +305,14 @@ import axios from "axios";
 
  
 export default {
-  name: 'Chat',
+  name: 'ChatAluno',
   data() {
     return {
-      
+      botMode:true,
       cont:0,
       userGroup:{integrantes:[],nome:[]},
       isCardModalActive:false,
-      tituloChat:'Chat',
+      tituloChat:'Bot',
       selecionado:'nulo',
       //Alunos: [{nome:'Antonio Silva',pefil:'Aluno'},{nome:'Bruno Silva',pefil:'Aluno'},{nome:'Antonio Carlos',pefil:'Aluno'},{nome:'Carlos Antonio',pefil:'Aluno'},{nome:'Fabiana Silva',pefil:'Aluno'},{nome:'Paula Soares',pefil:'Aluno'},{nome:'Maria Clara',pefil:'Aluno'},{nome:'Silvana de Paula',pefil:'Aluno'},{nome:'Silvia Santos',pefil:'Aluno'}],
       Alunos: [],
@@ -375,7 +321,10 @@ export default {
       Atendentes:[],
       Todos: [],
       Chats:[],
-      Grupos:[{nome:'Café ',perfil:'Grupo'},{nome:'Instrutores',perfil:'Grupo'},{nome:'Geral',pefil:'Grupo'}],
+     
+     
+     
+     Grupos:[{nome:'Café ',perfil:'Grupo'},{nome:'Instrutores',perfil:'Grupo'},{nome:'Geral',pefil:'Grupo'}],
      perfil:0,
       mensagens:[],
       selected: '1',
@@ -404,7 +353,6 @@ export default {
 			
 		},
   methods: {
-    //vaibd() {this.$store.dispatch('database/bindChats').then(item=>{console.log(item.val())})},
     scrollToEnd() {
 				var container = document.querySelector("#chatMsgs");
 				var scrollHeight = container.scrollHeight;
@@ -490,6 +438,71 @@ export default {
         })
         
    },
+   
+
+   botResponde(m){    
+      var resposta='teste'
+      m=m.toLowerCase()
+      
+      switch (true) {
+        case (m.indexOf('agendar')>-1 && m.indexOf('aula')>-1):
+        resposta="Ok, vou lhe orientar a agendar uma aula. Para agendar aulas, acesse o menu a sua direita e clique na opção agendar aulas."
+          break;
+        case (m.indexOf('cancelar')>-1 && m.indexOf('aula')>-1):
+        resposta="Tudo bem, para cancelar aulas, acesse o menu a sua direita e clique na opção cancelar aulas."
+          break;
+        case (m.indexOf('boleto')>-1):
+        resposta="Entendido. Para emitir o seu boleto, que pode ser pago em qualquer agencia bancaria ou lotérica, você deve acessar o menu e a opção gerar boletos. Selecione o mês especifico e clique em gerar."
+          break;
+        case (m.indexOf('resultado')>-1 && m.indexOf('exame')>-1):
+        resposta="Entendido. O resultado de exames são disponibilizados no seu perfil no e-condutor.Estamos torcendo por você."
+          break;
+        case (m.indexOf('agendar')>-1||m.indexOf('aula')>-1):
+        resposta="Ok, vou lhe orientar a agendar uma aula. Para agendar aulas, acesse o menu a sua direita e clique na opção agendar aulas."
+          break;
+        case (m.indexOf('atendente')>-1 || m.indexOf('pessoa') >-1 || m.indexOf('funcionario') >-1):
+        resposta="Tudo bem, aguarde que um atendente ira falar com você."
+         this.acionarAtendente(m)
+          break;
+        case (m.indexOf('Obrigado')>-1 || m.indexOf('tchau') >-1 || m.indexOf('vlws') >-1):
+        resposta="Estou aqui para ajudar."
+       
+          break;
+        default:
+          resposta="Desculpe, eu ainda estou aprendendo e não entendi sua solicitação. Poderia me dizer com outras palavras qual sua solicitação?"
+          break;
+      }
+        this.mensagemChatBot={
+        mensagem:resposta,
+        autor:'Bot',
+        destino:this.nome,
+        momento:new Date().toLocaleTimeString().substring(0,5)
+      }
+     
+      this.$store.dispatch('database/inseridor',this.mensagemChatBot)
+      this.mensagemChatBot=''
+
+   },
+   acionarAtendente(resp){
+     this.Atendentes.forEach(element => {
+        this.mensagemChat={
+        mensagem:resp,
+        autor:this.nome,
+        destino:element.nome,
+        momento:new Date().toLocaleTimeString().substring(0,5)
+      }
+     
+      this.$store.dispatch('database/inseridor',this.mensagemChat)
+      this.mensagemChat=''
+     
+       
+     });
+
+
+ 
+     
+
+   },
 
     enviarMensagem(){
  
@@ -500,7 +513,13 @@ export default {
         momento:new Date().toLocaleTimeString().substring(0,5)
       }
       this.$store.dispatch('database/inseridor',this.mensagemChat)
+      if(this.botMode){
+        
+        this.botResponde(this.msg)
+      }    
       this.msg=''
+      
+     
       
     },
     
