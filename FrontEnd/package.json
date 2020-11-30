@@ -19,6 +19,7 @@
     "vue": "^2.6.11",
     "vue-beautiful-chat": "^2.5.0",
     "vue-fontawesome": "0.0.2",
+    "vue-responsive": "^1.1.0",
     "vue-router": "^3.4.9",
     "vuetify": "^2.3.17",
     "vuex": "^3.5.1"
