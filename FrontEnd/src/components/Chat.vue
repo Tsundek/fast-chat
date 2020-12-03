@@ -1,7 +1,7 @@
 <template>
 <div>
   
-  <div v-responsive.lg.xl.md class="modal-card" id="todoChat" v-if="!false">
+  <div v-responsive.lg.xl.md class="modal-card" id="todoChat" >
     <v-row>
       <v-col id='contatosArea' lg="3"> 
         <div id="contatosTitulo">Contatos</div>
@@ -28,7 +28,7 @@
                   <b-menu-item v-for="instrutor in Instrutores" :key="instrutor" :label="instrutor.nome" @click="nomeChat(instrutor)"></b-menu-item>
                 </b-menu-item>
 
-                <b-menu-item :active="!isActive" id="contatoMenu">
+                <b-menu-item :active="!isActive" id="contatoMenu" v-if="perfil!='Instrutor'">
                   <template slot="label">          
                     <v-icon>mdi-account</v-icon>Alunos
                   </template>
@@ -112,7 +112,7 @@
                   <b-menu-item v-for="instrutor in Instrutores" :key="instrutor" :label="instrutor.nome" @click="nomeChat(instrutor)"></b-menu-item>
                 </b-menu-item>
 
-                <b-menu-item :active="!isActive" id="contatoMenuSmXm">
+                <b-menu-item :active="!isActive" id="contatoMenuSmXm" v-if="perfil!='Instrutor'">
                   <template slot="label">          
                     <v-icon>mdi-account</v-icon>Alunos
                   </template>
@@ -169,187 +169,222 @@
       </v-col>
     </v-row>      
   </div>
+  <b-modal  v-model="isCardModalActive" :width="640" scroll="keep" >
+     <div class="card" id="grupo">
+              <div>
+                <br>
+           <p style="font-size:120%;font-weight:bolder;text-align:center;">Nome do Grupo</p>
+            <b-input rounded expanded size='is-large' type="is-success" v-model="userGroup.nome">
+            </b-input>
+          
+          
+        <div style="margin-left: 1%;">
+          <v-row>
+            <v-col>
+              <div><p style="font-size:120%;font-weight:bolder;"> Integrantes:</p></div> 
+              <b-field>              
+                  <b-select multiple native-size="6" v-model="userGroup.integrantes">
+                      <option v-for="user in Todos" :key="user" :value="user">{{user}}</option>               
+                  </b-select>
+              </b-field>
+              </v-col>
+              <v-col>
+                <div><p style="font-size:120%;font-weight:bolder;"> Selecionados:</p></div> 
+              <b-field>
+                <div v-for="user in userGroup.integrantes" :key="user">
+                                <p style="font-size:120%;font-weight:bolder;text-align:center;">{{user}}</p>
+                  </div>
+              </b-field>
+            </v-col>
+          </v-row>
+        </div>
+        
+                </div>
+                <br>
+                <b-button expanded rounded type="is-primary" @click="incluirGrupo">Criar Grupo</b-button>
+            </div>
+        </b-modal>
 </div>
   
 </template>
 <style>
-#horaEnviada{
-  font-size: 60%;
-  text-align: start;
- }
-#hora{
-  font-size: 60%;
- }
-#msgRecebida{
-  background: rgb(88, 0, 0);
-  color: rgb(255, 255, 255);
-  font-size: 150%;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-align:start;  
-  margin-right:40% ;
-  border-radius: 50%;
-  margin-top: 1%;
-  margin-bottom: auto;
-  margin-left: 10px;
-  border-radius: 25px;  
-  padding: 10px;
-  position: relative;  
- }
-#msgEnviada{
-  background: rgb(0, 128, 21);
-  color: rgb(255, 255, 255);
-  font-size: 150%;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-align:end;  
-  margin-left:40% ;
-  border-radius: 50%;
-  margin-top: 1%;
-  margin-bottom: auto;
-  margin-right: 10px;
-  border-radius: 25px;  
-  padding: 10px;
-  position: relative;  
- }
-#sender{
-  position:static;
-  top: 1%;
+  #horaEnviada{
+    font-size: 60%;
+    text-align: start;
   }
-#chatMsgs{
-  height: 420px;
-  width: 100%;
-  margin-left: -1%;
-  overflow-y: scroll;
-  background:rgba(0, 150, 7, 0.065); 
+  #hora{
+    font-size: 60%;
   }
-#contatoMenu{
-  border-style: inset;
-  font-weight: bolder; 
- }
-
-#contatosTitulo{
-  font-weight: bolder;  
-  text-align: center;
-  font-size: 220%;
-  border-bottom: solid;
-  border-color: darkred;
-  width: 105%;
-  color: darkgreen;  
- }
-#chatTitulo{
-  font-weight: bolder;  
-  text-align:initial;
-  font-size: 220%;
-  border-bottom: solid;
-  margin-left: -2%;
-  width: 110%;
-  border-color: darkred;
-  color: darkgreen;
-
- }
-#contatosArea{
-  height: 700px;
-  background:rgba(250, 250, 210, 0.39);
- }
-#chatArea{
-  border-left: groove;
-  border-color: darkred;
+  #msgRecebida{
+    background: rgb(88, 0, 0);
+    color: rgb(255, 255, 255);
+    font-size: 150%;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-align:start;  
+    margin-right:40% ;
+    border-radius: 50%;
+    margin-top: 1%;
+    margin-bottom: auto;
+    margin-left: 10px;
+    border-radius: 25px;  
+    padding: 10px;
+    position: relative;  
   }
-#todoChat{
-  top: 20%;
-  width: 100%;    
-  height: 120%;
-  right: 10%;  
-  background-image: url("fundo4.jpg");
-  background-repeat:repeat;  
-  border-radius: 5%;
-  border-style: groove;
- }
-#todoChatSmXm{
-  top: 5%;
-  width: 150%;    
-  height: 130%;
-  right: 35%;  
-  background-image: url("fundo4.jpg");
-  background-repeat:repeat;  
-  border-radius: 5%;
-  border-style: groove;
- }
-
-
-
-
-#contatosAreaSmXm{
-  height: 700px;
-  background:rgba(250, 250, 210, 0.39);
- }
-#TituloSmXm{
-  font-weight: bolder;  
-  text-align:center;
-  font-size: 100%;
-  border-bottom: solid;
-  margin-left: -2%;
-  width: 110%;
-  border-color: darkred;
-  color: darkgreen;
-
- }
-#contatoMenuSmXm{
-  border-style: inset;
-  font-weight: bolder; 
-  font-size: 65%;
- }
-#chatAreaSmXm{
-  border-left: groove;
-  border-color: darkred;
+  #msgEnviada{
+    background: rgb(0, 128, 21);
+    color: rgb(255, 255, 255);
+    font-size: 150%;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-align:end;  
+    margin-left:40% ;
+    border-radius: 50%;
+    margin-top: 1%;
+    margin-bottom: auto;
+    margin-right: 10px;
+    border-radius: 25px;  
+    padding: 10px;
+    position: relative;  
+  }
+  #sender{
+    position:static;
+    top: 1%;
+    }
+  #chatMsgs{
+    height: 420px;
+    width: 100%;
+    margin-left: -1%;
+    overflow-y: scroll;
+    background:rgba(0, 150, 7, 0.065); 
+    }
+  #contatoMenu{
+    border-style: inset;
+    font-weight: bolder; 
   }
 
-#msgRecebida{
-  background: rgb(88, 0, 0);
-  color: rgb(255, 255, 255);
-  font-size: 80%;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-align:start;  
-  margin-right:40% ;
-  border-radius: 50%;
-  margin-top: 1%;
-  margin-bottom: auto;
-  margin-left: 10px;
-  border-radius: 25px;  
-  padding: 10px;
-  position: relative;  
- }
-#msgEnviada{
-  background: rgb(0, 128, 21);
-  color: rgb(255, 255, 255);
-  font-size: 80%;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-align:end;  
-  margin-left:40% ;
-  border-radius: 50%;
-  margin-top: 1%;
-  margin-bottom: auto;
-  margin-right: 10px;
-  border-radius: 25px;  
-  padding: 10px;
-  position: relative;  
- }
-#chatMsgsSmXm{
-  height: 150px;
-  width: 100%;
-  margin-left: -1%;
-  overflow-y: scroll;
-  background:rgba(0, 150, 7, 0.065); 
-  
+  #contatosTitulo{
+    font-weight: bolder;  
+    text-align: center;
+    font-size: 220%;
+    border-bottom: solid;
+    border-color: darkred;
+    width: 105%;
+    color: darkgreen;  
   }
-#horaEnviadaSmXm{
-  font-size: 50%;
-  text-align: start;
- }
-#horaSmXm{
+  #chatTitulo{
+    font-weight: bolder;  
+    text-align:initial;
+    font-size: 220%;
+    border-bottom: solid;
+    margin-left: -2%;
+    width: 110%;
+    border-color: darkred;
+    color: darkgreen;
+
+  }
+  #contatosArea{
+    height: 700px;
+    background:rgba(250, 250, 210, 0.39);
+  }
+  #chatArea{
+    border-left: groove;
+    border-color: darkred;
+    }
+  #todoChat{
+    top: 20%;
+    width: 100%;    
+    height: 120%;
+    right: 10%;  
+    background-image: url("fundo4.jpg");
+    background-repeat:repeat;  
+    border-radius: 5%;
+    border-style: groove;
+  }
+  #todoChatSmXm{
+    top: 5%;
+    width: 150%;    
+    height: 130%;
+    right: 35%;  
+    background-image: url("fundo4.jpg");
+    background-repeat:repeat;  
+    border-radius: 5%;
+    border-style: groove;
+  }
+
+
+
+
+  #contatosAreaSmXm{
+    height: 700px;
+    background:rgba(250, 250, 210, 0.39);
+  }
+  #TituloSmXm{
+    font-weight: bolder;  
+    text-align:center;
+    font-size: 100%;
+    border-bottom: solid;
+    margin-left: -2%;
+    width: 110%;
+    border-color: darkred;
+    color: darkgreen;
+
+  }
+  #contatoMenuSmXm{
+    border-style: inset;
+    font-weight: bolder; 
+    font-size: 65%;
+  }
+  #chatAreaSmXm{
+    border-left: groove;
+    border-color: darkred;
+    }
+
+  #msgRecebida{
+    background: rgb(88, 0, 0);
+    color: rgb(255, 255, 255);
+    font-size: 80%;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-align:start;  
+    margin-right:40% ;
+    border-radius: 50%;
+    margin-top: 1%;
+    margin-bottom: auto;
+    margin-left: 10px;
+    border-radius: 25px;  
+    padding: 10px;
+    position: relative;  
+  }
+  #msgEnviada{
+    background: rgb(0, 128, 21);
+    color: rgb(255, 255, 255);
+    font-size: 80%;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-align:end;  
+    margin-left:40% ;
+    border-radius: 50%;
+    margin-top: 1%;
+    margin-bottom: auto;
+    margin-right: 10px;
+    border-radius: 25px;  
+    padding: 10px;
+    position: relative;  
+  }
+  #chatMsgsSmXm{
+    height: 150px;
+    width: 100%;
+    margin-left: -1%;
+    overflow-y: scroll;
+    background:rgba(0, 150, 7, 0.065); 
+    
+    }
+  #horaEnviadaSmXm{
+    font-size: 50%;
+    text-align: start;
+  }
+  #horaSmXm{
   font-size: 50%;
  }
  </style>
@@ -375,7 +410,7 @@ export default {
       Atendentes:[],
       Todos: [],
       Chats:[],
-      Grupos:[{nome:'Café ',perfil:'Grupo'},{nome:'Instrutores',perfil:'Grupo'},{nome:'Geral',pefil:'Grupo'}],
+      Grupos:[{nome:'Café ',perfil:'Grupo'},{nome:'Instrutores',perfil:'Grupo'},{nome:'Geral',pefil:'Grupo'},{nome:'Grupo de teste ',perfil:'Grupo'}],
      perfil:0,
       mensagens:[],
       selected: '1',
@@ -416,6 +451,7 @@ export default {
 			},
     incluirGrupo(){      
       var payload=({nome:this.userGroup.nome,integrantes:this.userGroup.integrantes,perfil:'grupo'})
+      this.Grupos.push({nome:payload.nome})
       payload.integrantes.forEach(element => {
         var msg={ mensagem:"Você foi incluido no grupo.",
         autor:payload.nome,
