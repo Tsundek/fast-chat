@@ -73,7 +73,8 @@ FastChat é um projeto desenvolvido em resposta a um desafio, apresentado pela F
 # Integrantes do grupo
 
 
-| Nome          | GitHub                                           |
-| ------------- |:------------------------------------------------:|
-| Cauan Almeida | [clique aqui](https://github.com/Tsundek)        |
-| Celso Reis    | [clique aqui](https://github.com/JoeReis1983)    |
+| Nome          | GitHub                                           |LinkedIn                                                      |
+| ------------- |:------------------------------------------------:|:------------------------------------------------------------:|
+| Cauan Almeida | [clique aqui](https://github.com/Tsundek)        |[clique aqui](https://www.linkedin.com/in/cauancesar-almeida/)|
+| Celso Reis    | [clique aqui](https://github.com/JoeReis1983)    |[clique aqui](https://www.linkedin.com/in/celsoreis/)         |
+
