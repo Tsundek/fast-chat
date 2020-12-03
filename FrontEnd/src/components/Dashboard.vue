@@ -15,7 +15,7 @@
             </div>
             <br>
             <div>
-            <v-btn block large rounded dark ><v-icon large color="orange">mdi-exclamation-thick</v-icon>
+            <v-btn block large rounded dark @click="filtroPendente"><v-icon large color="orange">mdi-exclamation-thick</v-icon>
                Pendentes
             </v-btn>
             </div>
@@ -66,6 +66,8 @@
               </v-card-title>
               <v-card-text><p style="font-size:200%;">{{item.atividade}}</p>
                 <footer id="prazoCard">Prazo: {{item.prazo}}</footer>
+                <footer id="prazoCard">Criado por: {{item.criador}}</footer>
+                
               </v-card-text>
             </v-card>
 
@@ -119,7 +121,7 @@
               </header>
             
               <section class="modal-card-body">
-                  <b-field label="Responsavel" label-position="on-border" type="is-primary" >
+                  <b-field label="Responsavel" label-position="on-border" type="is-primary" v-if="perfil=='Diretor'||perfil=='Atendimento'||perfil=='Admin'">
                 <b-autocomplete v-model="responsavel" :data="Todos" clearable @select="option => selected = option" placeholder="Buscar...">
                 
                 </b-autocomplete>
@@ -149,8 +151,7 @@
   text-align: center;
 }
 #todoCard{
- min-height: 150%;
-
+ min-height: 100%;
 }
 #concluido{
   border-style:outset;
@@ -272,7 +273,7 @@ export default {
       titulo:'',
       atividade:'',
       Todos:[],
-      responsavel:''
+      responsavel:localStorage.nome
     
     }
   },
@@ -325,8 +326,18 @@ methods: {
    this.titulo=''
    this.atividade=''
    this.prazo=new Date()
-   this.responsavel=''  
- } 
+   
+ } ,
+ filtroPendente(){  
+  this.computedAtividades.forEach(element => {
+    if(element.status=='pendente')
+    console.log(element)
+    
+  });
+     
+  
+
+ }
 },
 
 computed: {
