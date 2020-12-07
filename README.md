@@ -55,6 +55,10 @@ FastChat é um projeto desenvolvido em resposta a um desafio, apresentado pela F
 * Melhorias necessárias
 * Video de entrega final
 
+### Sprint 7 (Extra)
+
+* Implementar machine learning
+
 ## Screenshots
 
 ### **Dashboard de atividades**
