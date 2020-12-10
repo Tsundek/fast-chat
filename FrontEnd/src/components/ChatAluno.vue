@@ -119,185 +119,185 @@
   
 </template>
 <style>
-#horaEnviada{
-  font-size: 60%;
-  text-align: start;
- }
-#hora{
-  font-size: 60%;
- }
-#msgRecebida{
-  background: rgb(88, 0, 0);
-  color: rgb(255, 255, 255);
-  font-size: 150%;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-align:start;  
-  margin-right:40% ;
-  border-radius: 50%;
-  margin-top: 1%;
-  margin-bottom: auto;
-  margin-left: 10px;
-  border-radius: 25px;  
-  padding: 10px;
-  position: relative;  
- }
-#msgEnviada{
-  background: rgb(0, 128, 21);
-  color: rgb(255, 255, 255);
-  font-size: 150%;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-align:end;  
-  margin-left:40% ;
-  border-radius: 50%;
-  margin-top: 1%;
-  margin-bottom: auto;
-  margin-right: 10px;
-  border-radius: 25px;  
-  padding: 10px;
-  position: relative;  
- }
-#sender{
-  position:static;
-  top: 1%;
+  #horaEnviada{
+    font-size: 60%;
+    text-align: start;
   }
-#chatMsgs{
-  height: 420px;
-  width: 100%;
-  margin-left: -1%;
-  overflow-y: scroll;
-  background:rgba(0, 150, 7, 0.065); 
+  #hora{
+    font-size: 60%;
   }
-#contatoMenu{
-  border-style: inset;
-  font-weight: bolder; 
- }
-
-#contatosTitulo{
-  font-weight: bolder;  
-  text-align: center;
-  font-size: 220%;
-  border-bottom: solid;
-  border-color: darkred;
-  width: 105%;
-  color: darkgreen;  
- }
-#chatTitulo{
-  font-weight: bolder;  
-  text-align:center;
-  font-size: 220%;
-  border-bottom: solid;
-  margin-left: -2%;
-  width: 110%;
-  border-color: darkred;
-  color: darkgreen;
-
- }
-#contatosArea{
-  height: 700px;
-  background:rgba(250, 250, 210, 0.39);
- }
-#chatArea{
-  border-left: groove;
-  border-color: darkred;
+  #msgRecebida{
+    background: rgb(88, 0, 0);
+    color: rgb(255, 255, 255);
+    font-size: 150%;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-align:start;  
+    margin-right:40% ;
+    border-radius: 50%;
+    margin-top: 1%;
+    margin-bottom: auto;
+    margin-left: 10px;
+    border-radius: 25px;  
+    padding: 10px;
+    position: relative;  
   }
-#todoChat{
-  top: 25%;
-  width: 100%;    
-  height: 120%;
-  right: 10%;  
-  background-image: url("fundo4.jpg");
-  background-repeat:repeat;  
-  border-radius: 5%;
-  border-style: groove;
- }
-#todoChatSmXm{
-  top: 5%;
-  width: 150%;    
-  height: 130%;
-  right: 35%;  
-  background-image: url("fundo4.jpg");
-  background-repeat:repeat;  
-  border-radius: 5%;
-  border-style: groove;
- }
-
-
-
-
-#contatosAreaSmXm{
-  height: 700px;
-  background:rgba(250, 250, 210, 0.39);
- }
-#TituloSmXm{
-  font-weight: bolder;  
-  text-align:center;
-  font-size: 100%;
-  border-bottom: solid;
-  margin-left: -2%;
-  width: 110%;
-  border-color: darkred;
-  color: darkgreen;
-
- }
-#contatoMenuSmXm{
-  border-style: inset;
-  font-weight: bolder; 
-  font-size: 65%;
- }
-#chatAreaSmXm{
-  border-left: groove;
-  border-color: darkred;
+  #msgEnviada{
+    background: rgb(0, 128, 21);
+    color: rgb(255, 255, 255);
+    font-size: 150%;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-align:end;  
+    margin-left:40% ;
+    border-radius: 50%;
+    margin-top: 1%;
+    margin-bottom: auto;
+    margin-right: 10px;
+    border-radius: 25px;  
+    padding: 10px;
+    position: relative;  
+  }
+  #sender{
+    position:static;
+    top: 1%;
+    }
+  #chatMsgs{
+    height: 420px;
+    width: 100%;
+    margin-left: -1%;
+    overflow-y: scroll;
+    background:rgba(0, 150, 7, 0.065); 
+    }
+  #contatoMenu{
+    border-style: inset;
+    font-weight: bolder; 
   }
 
-#msgRecebida{
-  background: rgb(88, 0, 0);
-  color: rgb(255, 255, 255);
-  font-size: 80%;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-align:start;  
-  margin-right:40% ;
-  border-radius: 50%;
-  margin-top: 1%;
-  margin-bottom: auto;
-  margin-left: 10px;
-  border-radius: 25px;  
-  padding: 10px;
-  position: relative;  
- }
-#msgEnviada{
-  background: rgb(0, 128, 21);
-  color: rgb(255, 255, 255);
-  font-size: 80%;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-align:end;  
-  margin-left:40% ;
-  border-radius: 50%;
-  margin-top: 1%;
-  margin-bottom: auto;
-  margin-right: 10px;
-  border-radius: 25px;  
-  padding: 10px;
-  position: relative;  
- }
-#chatMsgsSmXm{
-  height: 150px;
-  width: 100%;
-  margin-left: -1%;
-  overflow-y: scroll;
-  background:rgba(0, 150, 7, 0.065); 
-  
+  #contatosTitulo{
+    font-weight: bolder;  
+    text-align: center;
+    font-size: 220%;
+    border-bottom: solid;
+    border-color: darkred;
+    width: 105%;
+    color: darkgreen;  
   }
-#horaEnviadaSmXm{
-  font-size: 50%;
-  text-align: start;
- }
-#horaSmXm{
-  font-size: 50%;
- }
+  #chatTitulo{
+    font-weight: bolder;  
+    text-align:center;
+    font-size: 220%;
+    border-bottom: solid;
+    margin-left: -2%;
+    width: 110%;
+    border-color: darkred;
+    color: darkgreen;
+
+  }
+  #contatosArea{
+    height: 700px;
+    background:rgba(250, 250, 210, 0.39);
+  }
+  #chatArea{
+    border-left: groove;
+    border-color: darkred;
+    }
+  #todoChat{
+    top: 25%;
+    width: 100%;    
+    height: 120%;
+    right: 10%;  
+    background-image: url("fundo4.jpg");
+    background-repeat:repeat;  
+    border-radius: 5%;
+    border-style: groove;
+  }
+  #todoChatSmXm{
+    top: 5%;
+    width: 150%;    
+    height: 130%;
+    right: 35%;  
+    background-image: url("fundo4.jpg");
+    background-repeat:repeat;  
+    border-radius: 5%;
+    border-style: groove;
+  }
+
+
+
+
+  #contatosAreaSmXm{
+    height: 700px;
+    background:rgba(250, 250, 210, 0.39);
+  }
+  #TituloSmXm{
+    font-weight: bolder;  
+    text-align:center;
+    font-size: 100%;
+    border-bottom: solid;
+    margin-left: -2%;
+    width: 110%;
+    border-color: darkred;
+    color: darkgreen;
+
+  }
+  #contatoMenuSmXm{
+    border-style: inset;
+    font-weight: bolder; 
+    font-size: 65%;
+  }
+  #chatAreaSmXm{
+    border-left: groove;
+    border-color: darkred;
+    }
+
+  #msgRecebida{
+    background: rgb(88, 0, 0);
+    color: rgb(255, 255, 255);
+    font-size: 80%;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-align:start;  
+    margin-right:40% ;
+    border-radius: 50%;
+    margin-top: 1%;
+    margin-bottom: auto;
+    margin-left: 10px;
+    border-radius: 25px;  
+    padding: 10px;
+    position: relative;  
+  }
+  #msgEnviada{
+    background: rgb(0, 128, 21);
+    color: rgb(255, 255, 255);
+    font-size: 80%;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-align:end;  
+    margin-left:40% ;
+    border-radius: 50%;
+    margin-top: 1%;
+    margin-bottom: auto;
+    margin-right: 10px;
+    border-radius: 25px;  
+    padding: 10px;
+    position: relative;  
+  }
+  #chatMsgsSmXm{
+    height: 150px;
+    width: 100%;
+    margin-left: -1%;
+    overflow-y: scroll;
+    background:rgba(0, 150, 7, 0.065); 
+    
+    }
+  #horaEnviadaSmXm{
+    font-size: 50%;
+    text-align: start;
+  }
+  #horaSmXm{
+    font-size: 50%;
+  }
  </style>
 <script>
 
@@ -308,6 +308,7 @@ export default {
   name: 'ChatAluno',
   data() {
     return {
+      bot:axios,
       botMode:true,
       cont:0,
       userGroup:{integrantes:[],nome:[]},
@@ -352,8 +353,8 @@ export default {
       this.scrollToEnd();     
 			
 		},
-  methods: {
-    scrollToEnd() {
+methods: {
+  scrollToEnd() {
 				var container = document.querySelector("#chatMsgs");
 				var scrollHeight = container.scrollHeight;
         container.scrollTop = scrollHeight;
@@ -362,7 +363,7 @@ export default {
 				var scrollHeight2 = container2.scrollHeight;
 				container2.scrollTop = scrollHeight2;
 			},
-    incluirGrupo(){      
+  incluirGrupo(){      
       var payload=({nome:this.userGroup.nome,integrantes:this.userGroup.integrantes,perfil:'grupo'})
       payload.integrantes.forEach(element => {
         var msg={ mensagem:"Você foi incluido no grupo.",
@@ -375,20 +376,15 @@ export default {
       this.$store.dispatch('database/inseridor',msg)
         
       });
-      // this.$store.dispatch('database/criarGrupo',payload)
-      // var msg={ mensagem:"Você foi incluido no grupo.",
-      // autor:this.nome,
-      // destino:payload.nome,
-      // momento:new Date().toLocaleTimeString().substring(0,5)
-      // }
+ 
       this.grupo()
     },
-    grupo(){
+  grupo(){
       this.isCardModalActive=!this.isCardModalActive
     },
     
     
-    todos(){
+  todos(){
       axios.get().then(res=>{
         res.data.forEach(element=>{
           this.Todos.push(element.nome)
@@ -420,7 +416,7 @@ export default {
       
       },
 
-    ordenarNome(a, b) {
+  ordenarNome(a, b) {
       if (a.nome > b.nome) {
         return 1;
         }
@@ -431,59 +427,31 @@ export default {
           return 0;
     },
 
-    buscarContatos(){
+  buscarContatos(){
       
       this.$store.dispatch('database/bindChatsContatos',this.nome).then(item=>{            
         this.Chats=(Object.keys(item.val()))        
         })
         
    },
-   
-
-   botResponde(m){    
-      var resposta='teste'
-      m=m.toLowerCase()
-      
-      switch (true) {
-        case (m.indexOf('agendar')>-1 && m.indexOf('aula')>-1):
-        resposta="Ok, vou lhe orientar a agendar uma aula. Para agendar aulas, acesse o menu a sua direita e clique na opção agendar aulas."
-          break;
-        case (m.indexOf('cancelar')>-1 && m.indexOf('aula')>-1):
-        resposta="Tudo bem, para cancelar aulas, acesse o menu a sua direita e clique na opção cancelar aulas."
-          break;
-        case (m.indexOf('boleto')>-1):
-        resposta="Entendido. Para emitir o seu boleto, que pode ser pago em qualquer agencia bancaria ou lotérica, você deve acessar o menu e a opção gerar boletos. Selecione o mês especifico e clique em gerar."
-          break;
-        case (m.indexOf('resultado')>-1 && m.indexOf('exame')>-1):
-        resposta="Entendido. O resultado de exames são disponibilizados no seu perfil no e-condutor.Estamos torcendo por você."
-          break;
-        case (m.indexOf('agendar')>-1||m.indexOf('aula')>-1):
-        resposta="Ok, vou lhe orientar a agendar uma aula. Para agendar aulas, acesse o menu a sua direita e clique na opção agendar aulas."
-          break;
-        case (m.indexOf('atendente')>-1 || m.indexOf('pessoa') >-1 || m.indexOf('funcionario') >-1):
-        resposta="Tudo bem, aguarde que um atendente ira falar com você."
-         this.acionarAtendente(m)
-          break;
-        case (m.indexOf('Obrigado')>-1 || m.indexOf('tchau') >-1 || m.indexOf('vlws') >-1):
-        resposta="Estou aqui para ajudar."
-       
-          break;
-        default:
-          resposta="Desculpe, eu ainda estou aprendendo e não entendi sua solicitação. Poderia me dizer com outras palavras qual sua solicitação?"
-          break;
-      }
-        this.mensagemChatBot={
-        mensagem:resposta,
-        autor:'Bot',
-        destino:this.nome,
-        momento:new Date().toLocaleTimeString().substring(0,5)
+  botResponde(m){
+     var siteBot="http://127.0.0.1:5000/?c="+m 
+     this.bot.get(siteBot).then((result) => {
+        this.enviarResposta(result.data)
+     })
+   },
+  enviarResposta(resposta){
+     this.mensagemChatBot={
+      mensagem:resposta,
+      autor:'Bot',
+      destino:this.nome,
+      momento:new Date().toLocaleTimeString().substring(0,5)
       }
      
       this.$store.dispatch('database/inseridor',this.mensagemChatBot)
       this.mensagemChatBot=''
-
    },
-   acionarAtendente(resp){
+  acionarAtendente(resp){
      this.Atendentes.forEach(element => {
         this.mensagemChat={
         mensagem:resp,
@@ -494,17 +462,10 @@ export default {
      
       this.$store.dispatch('database/inseridor',this.mensagemChat)
       this.mensagemChat=''
-     
-       
      });
+    },
 
-
- 
-     
-
-   },
-
-    enviarMensagem(){
+  enviarMensagem(){
  
         this.mensagemChat={
         mensagem:this.msg,
@@ -523,7 +484,7 @@ export default {
       
     },
     
-    nomeChat(x){
+  nomeChat(x){
       
       if(x.nome){
         this.tituloChat=x.nome}        
@@ -534,7 +495,7 @@ export default {
       this.bindChatss()
     },
 
-    bindChatss(){
+  bindChatss(){
      
      this.computedChats.forEach(element => {
        Object.keys(element).forEach(element2 => {
@@ -544,7 +505,7 @@ export default {
       
       },
   },
-  watch: {
+watch: {
   computedChats(){
     
   }
